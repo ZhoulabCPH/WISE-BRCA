@@ -94,14 +94,14 @@ class Block(nn.Module):
 
 
 class WISE_BRCA(nn.Module):
-    def __init__(self, input_dim=768, target_len_224=90, target_len_512=60, depth=12, embed_dim=768, num_heads=12, mlp_ratio=4., drop_rate=0.4, attn_drop_rate=0.4,
+    def __init__(self, input_dim=768, target_len=60, depth=12, embed_dim=768, num_heads=12, mlp_ratio=4., drop_rate=0.4, attn_drop_rate=0.4,
                   drop_path_rate=0.4):
 
         super(WISE_BRCA, self).__init__()
 
         self.cluster_num = 30
-        self.proj_224 = nn.Sequential(nn.Linear(input_dim, embed_dim), nn.BatchNorm1d(target_len_224), nn.ReLU())
-        self.proj_512 = nn.Sequential(nn.Linear(input_dim, embed_dim), nn.BatchNorm1d(target_len_512),  nn.ReLU())
+        self.proj_224 = nn.Sequential(nn.Linear(input_dim, embed_dim), nn.BatchNorm1d(90), nn.ReLU())
+        self.proj_512 = nn.Sequential(nn.Linear(input_dim, embed_dim), nn.BatchNorm1d(target_len),  nn.ReLU())
         self.ln = nn.LayerNorm(embed_dim)
         self.head = nn.Sequential(nn.Linear(2*embed_dim, 1))
         self.cls_224 = nn.Parameter(torch.nn.init.trunc_normal_(torch.empty(1, 1, embed_dim), 0., 0.2))
@@ -158,8 +158,8 @@ class WISE_BRCA(nn.Module):
             x1_f, x2_f = self.forward_cross_attention(x1_f, x2_f, i)
         cls_dec = torch.cat([x1_f[:, -1, :], x2_f[:, -1, :]], dim=1)
 
-        y = self.head(cls_dec)
-        return y.squeeze(1)
+
+        return cls_dec
 
 
 
