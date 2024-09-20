@@ -9,3 +9,21 @@ Code for 'Artificial intelligence enables precision detection of pathogenic germ
 
 **Findings** WISE-BRCA demonstrated robust patient-level performance across cohorts, with an area under the curve (AUC)-receiver operating characteristic of 0·824 (95% CI 0·725–0·923; CHCAMS test set) and AUCs of 0·798 (95% CI 0·682–0·913; YYH) and 0·800 (95% CI 0·590–1·000; HMUCH). Quantitative analysis of WISE-BRCA’s prediction mechanisms revealed that breast cancers with germline BRCA1/2 mutations were associated with increased inflammatory cell infiltration, stromal proliferation and necrosis, and nuclear heterogeneity. A multi-modality prediction model integrating WSIs with clinicopathological information demonstrated superior performance, with AUC=0·925 (95% CI 0·868–0·982) in the unmatched external cohort, outperforming the single-modality prediction model.
 
+****
+## Dataset
+- CHCAMS, Chinese Academy of Medical Sciences.
+- YYH, Yantai Yuhuangding Hospital.
+- HMUCH, Harbin Medical University Cancer Hospital.
+
+  The datasets are available from the corresponding author upon reasonable request.
+
+## checkpoints
+- CTransPath: CTransPath model pretrained by [CTransPath](https://github.com/Xiyue-Wang/TransPath).
+- Tumour_segmentation_model_224: Tumour segmentation model on patche of size 224.
+- Tumour_segmentation_model_512: Tumour segmentation model on patche of size 512.
+- WISE-BRCA: Whole-slide Images Systematically Extrapolate BRCA1/2 mutations.
+- WISE-BRCA-biopsy: Whole-slide Images Systematically Extrapolate BRCA1/2 mutations on biopsy samples.
+- mcVAE: mcVAE is used to lean a joint common latent space of heterogeneous histopathological and phenotypic data.
+- WISE-BRCA-combined: Joint prediction of BRCA1/2 mutation carriers from histology images and clinical information.
+
+  
