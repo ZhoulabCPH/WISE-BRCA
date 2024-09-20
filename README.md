@@ -26,4 +26,63 @@ Code for 'Artificial intelligence enables precision detection of pathogenic germ
 - mcVAE: mcVAE is used to lean a joint common latent space of heterogeneous histopathological and phenotypic data.
 - WISE-BRCA-combined: Joint prediction of BRCA1/2 mutation carriers from histology images and clinical information.
 
+## data_preprocessing
+- <code>tiling_WSI_multi_thread.py</code>: Used to segment and filter patches from WSIs. Implemented based on <code>histolab</code> package.
+- <code>stain_normalization_multi_thread.py</code>: Patches stain normalization. Implemented based on <code>ParamNet</code>.
+- <code>cluster_sample.py</code>: A clustering-based sampling strategy implement to extract patches with distinct histomorphological features from the tumour area.
+
+## tumour_segmentation
+- <code>dataset.py</code>: Generate datasets.
+- <code>model.py</code>: Implementation of tumour segmentation model.
+- <code>train.py</code>: Training the tumour segmentation model.
+- <code>inference_to_datasets.py</code>: Using tumour segmentation model to automatically extract tumour areas from each WSI.
+
+## get_patches_feature
+- <code>ctran.py</code>: Implementation of CTransPath.
+- <code>get_CTransPath_feature.py</code>: Using pre-trained CTransPath to obtain histopathological features of patches.
+  
+  Part of the implementation here is based on [CTransPath](https://github.com/Xiyue-Wang/TransPath).
+
+## WISE-BRCA
+- <code>dataset.py</code>: Generate datasets.
+- <code>model.py</code>: Implementation of WISE-BRCA.
+- <code>train.py</code>: Training the WISE-BRCA model.
+- <code>inference.py</code>: Predicting germline BRCA1/2 mutation status from histology images using WISE-BRCA.
+
+## WISE-BRCA-combined
+**mcVAE**
+- <code>dataset.py</code>: Generate datasets.
+- <code>model_mcVAE.py</code>: Implementation of mcVAE.
+- <code>model_WISE-BRCA.py</code>: Implementation of WISE-BRCA.
+- <code>train.py</code>: Training the WISE-BRCA model.
+- <code>inference.py</code>: Predicting germline BRCA1/2 mutation status from histology images using WISE-BRCA.
+
+- <code>model.py</code>: Implementation of WISE-BRCA-combined.
+- <code>train.py</code>: Training the WISE-BRCA-combined model.
+- <code>inference.py</code>: Predicting germline BRCA1/2 mutation status from histology images and clinical information using WISE-BRCA-combined.
+
+## Usage
+If you intend to utilize it for paper reproduction or your own WSI dataset, please adhere to the following workflow:
+  1) Configuration Environment.
+  2) Create a folder for your data and clinical information in <code>datasets</code> and download or move the WSIs there.
+  3) Use <code>data_preprocessing/tiling_WSI_multi_thread.py</code> to segment WSIs into patches of size 224 and 512 at mpp of 0.488.
+  4) Use <code>data_preprocessing/stain_normalization_multi_thread.py</code> to perform stain normalization for patches (If computing resources are limited, consider applying stain normalization only to patches sampled from the cluster sample).
+  5) Use <code>get_patches_feature/get_CTransPath_feature.py</code> to obtain representation vector of patches.
+  6) Use <code>tumour_segmentation/inference_to_datasets.py</code> to extract tumour areas from each WSI.
+  7) Use <code>data_preprocessing/cluster_sample.py</code> clustering-based sampling strategy to extract patches with distinct histomorphological features from the tumour area.
+  8) For the processing of clinical information, please refer to our previously published work 'DrABC: deep learning accurately predicts germline pathogenic mutation status in breast cancer patients based on phenotype data'.
+  9) After preparation, use <code>WISE-BRCA/inference.py</code> or <code>WISE-BRCA-combined/inference.py</code> to predict germline BRCA1/2 mutation status on your own datasets. Or use <code>WISE-BRCA/train.py</code> or <code>WISE-BRCA-combined/train.py</code> on your own datasets.
+  
+
+
+
+
+
+
+  
+
+
+
+
+
   
