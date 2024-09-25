@@ -25,7 +25,7 @@ Code for 'Artificial intelligence enables precision detection of pathogenic germ
 - WISE-BRCA-biopsy: Whole-slide Images Systematically Extrapolate BRCA1/2 mutations on biopsy samples.
 - mcVAE: mcVAE is used to lean a joint common latent space of heterogeneous histopathological and phenotypic data.
 - WISE-BRCA-combined: Joint prediction of BRCA1/2 mutation carriers from histology images and clinical information.
-
+All checkpoints can be found at [WISE-BRCA]([https://github.com/Xiyue-Wang/TransPath](https://drive.google.com/drive/folders/1g4M8utv8-lPsp0yvJKDFEXheYQ6gPEti?usp=sharing)).
 ## data_preprocessing
 - <code>tiling_WSI_multi_thread.py</code>: Used to segment and filter patches from WSIs. Implemented based on <code>histolab</code> package.
 - <code>stain_normalization_multi_thread.py</code>: Patches stain normalization. Implemented based on <code>ParamNet</code>.
