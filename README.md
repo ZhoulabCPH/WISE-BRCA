@@ -1,4 +1,4 @@
-# WISE-BRCA
+# WISE-BRCA [![DOI](https://zenodo.org/badge/850167237.svg)](https://doi.org/10.5281/zenodo.14058685)
 Code for 'Artificial intelligence enables precision detection of pathogenic germline BRCA1/2 mutations in breast cancer from histology images: A multi-centre, retrospective study'
 ![flowchart](https://github.com/ZhoulabCPH/WISE-BRCA/blob/master/checkpoints/flowchart.png)
 ****
